@@ -3,8 +3,8 @@ let
   toTOML = (pkgs.formats.toml { }).generate;
 in
 toTOML "config.toml" {
-  title = "f1nn";
-  description = "my personal blog";
+  title = "f1nn's blog";
+  description = "My personal blog";
   author = "f1nn";
 
   # locale
@@ -34,6 +34,10 @@ toTOML "config.toml" {
         name = "posts";
         url = "posts";
       }
+      {
+        name = "tags";
+        url = "tags";
+      }
     ];
     socials = [
       {
@@ -52,6 +56,8 @@ toTOML "config.toml" {
     close_responsive_menu_on_resize = false;
     copy_button = false;
     show_default_author = false;
+    bottom_footnotes = true;
+    header_title = "f1nn's blog";
     favicon_emoji = "👨‍💻";
     copyright = "theme by [ebkalderon](https://github.com/ebkalderon)";
   };
