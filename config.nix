@@ -7,9 +7,13 @@ toTOML "config.toml" {
   description = "My personal blog";
   author = "f1nn";
 
-  # locale
+  # html
   compile_sass = true;
   minify_html = true;
+
+  # feed
+  generate_feeds = true;
+  feed_filenames = [ "rss.xml" ];
 
   # other
   base_url = "/";
