@@ -15,7 +15,7 @@ There is an abundance of crypto-currencies in the world, not even counting shitc
 The first result for `privacy crypto coin` on your favorite search engine results in... **Monero**, which is what I decided to get into.
 
 # To KYC, or Not to KYC?
-**Monero** is one of the most heavily regulated crypto-currencies, which makes it hard to find a service that exchanges it from fiat currency. In this post I will share my opionated beginner-friendly way of purchasing XMR, ignoring P2P exchange services such [RetoSwap](https://retoswap.com) for simplicity, *for now*.
+**Monero** is one of the most heavily regulated crypto-currencies, which makes it hard to find a service that exchanges it from fiat currency. In this post I will share my opionated beginner-friendly way of purchasing XMR, skipping over P2P exchange services such as [RetoSwap](https://retoswap.com), *for now*.
 
 # Step-by-Step Guide
 ## 1. Purchase LTC

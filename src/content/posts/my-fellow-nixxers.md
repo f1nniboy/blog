@@ -14,4 +14,4 @@ While on the search for simple alternatives, I discovered a new static generator
 I decided to try it out & quickly got accustomed to it. This site is fully managed using my [NixOS dotfiles](https://github.com/f1nniboy/dots), which makes it a breeze to re-build the blog and statically serve it on my VPS.
 
 # What's To Come?
-I have pretty much just started to learn Nix and its beauty (*what beauty?*) and wish to use this blog as knowledge database on NixOS, technlogy and other topics I may ramble about in the future.
+I have pretty much just started to learn Nix and its beauty (*what beauty?*) and wish to use this blog as a knowledge database on NixOS, technology and other topics I may ramble about in the future.
