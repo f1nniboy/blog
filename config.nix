@@ -16,7 +16,8 @@ toTOML "config.toml" {
   feed_filenames = [ "rss.xml" ];
 
   # other
-  base_url = "/";
+  # TODO: use as attr from package
+  base_url = "https://f1nn.space";
 
   taxonomies = [
     {
