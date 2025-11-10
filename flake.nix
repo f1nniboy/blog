@@ -6,7 +6,8 @@
     systems.url = "github:nix-systems/default";
 
     theme = {
-      url = "github:ebkalderon/terminus";
+      # commit without the theme switcher (to avoid js)
+      url = "github:ebkalderon/terminus/d401cd0dc8464f16f602a286797f9d99c0b9eb44";
       flake = false;
     };
   };

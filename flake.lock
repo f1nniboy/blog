@@ -41,16 +41,17 @@
     "theme": {
       "flake": false,
       "locked": {
-        "lastModified": 1759091670,
-        "narHash": "sha256-HR134y15obVQImFU7ofFWsX1jeKve7NEnFt+jbDw4CI=",
+        "lastModified": 1756088499,
+        "narHash": "sha256-cFSgwY0NpQcHMiRng2tpGR0GMQtzkUu5H+6m2DJ8ImI=",
         "owner": "ebkalderon",
         "repo": "terminus",
-        "rev": "b008df4445bda4111f462828df9b11e576957a25",
+        "rev": "d401cd0dc8464f16f602a286797f9d99c0b9eb44",
         "type": "github"
       },
       "original": {
         "owner": "ebkalderon",
         "repo": "terminus",
+        "rev": "d401cd0dc8464f16f602a286797f9d99c0b9eb44",
         "type": "github"
       }
     }

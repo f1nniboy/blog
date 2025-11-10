@@ -4,7 +4,7 @@ let
 in
 toTOML "config.toml" {
   title = "f1nn's blog";
-  description = "My personal blog";
+  description = "my personal blog";
   author = "f1nn";
 
   # html
@@ -38,10 +38,12 @@ toTOML "config.toml" {
       {
         name = "posts";
         url = "posts";
+        trailing_slash = true;
       }
       {
         name = "tags";
         url = "tags";
+        trailing_slash = true;
       }
     ];
     socials = [

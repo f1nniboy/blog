@@ -67,7 +67,7 @@
 </header>
 {%- endmacro -%}
 
-{# Change date format -#}
+{# change date format to dd/mm/YY -#}
 {%- macro date(value) -%}
 <time datetime="{{ value }}">{{ value | date(format="%d/%m/%Y") }}</time>
 {%- endmacro -%}
