@@ -9,13 +9,14 @@ pkgs.stdenv.mkDerivation {
   src = ./src;
 
   nativeBuildInputs = with pkgs; [
+    coreutils
     zola
     sass
   ];
 
   configurePhase = ''
     mkdir -p themes sass
-    cp -r ${inputs.theme}/ themes/custom
+    cp -r "${inputs.theme}" themes/custom
   '';
 
   buildPhase = ''
@@ -23,6 +24,12 @@ pkgs.stdenv.mkDerivation {
   '';
 
   installPhase = ''
-    cp -r public $out
+    cp -r public "$out"
+
+    # generate .etag files for cache
+    for file in $(find "$out" -type f); do
+        hash="$(md5sum "$file" | cut -d" " -f1)"
+        echo "\"$hash\"" > "$file.etag"
+    done
   '';
 }
