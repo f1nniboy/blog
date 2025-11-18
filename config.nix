@@ -52,10 +52,6 @@ toTOML "config.toml" {
         url = "mailto:me@f1nn.space";
       }
       {
-        name = "discord";
-        url = "https://discord.com/users/747682664135524403";
-      }
-      {
         name = "github";
         url = "https://github.com/f1nniboy";
       }
@@ -65,7 +61,7 @@ toTOML "config.toml" {
     show_default_author = false;
     bottom_footnotes = true;
     header_title = "f1nn's blog";
-    favicon_emoji = "👨‍💻";
+    favicon_emoji = "📟";
     copyright = "theme by [ebkalderon](https://github.com/ebkalderon)";
   };
 }
