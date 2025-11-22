@@ -1,16 +1,7 @@
 {%- macro excerpt(page) -%}
 <article class="post">
     {{ post_macros::header(page=page, heading="h2", is_excerpt=true) | indent | safe }}
-
-    {%- set permalink = page.permalink -%}
-
-    {%- if page.description %}
-    <p>{{ page.description | markdown(inline=true) | safe }}</p>
-    {%- elif page.summary %}
-    {%- set permalink = permalink ~ "#continue-reading" %}
-    {{ page.summary | safe }}
-    {%- endif %}
-    <a class="read-more" href="{{ permalink | safe }}" aria-label="Read more about {{ page.title }}">read more →</a>
+    {{ page.content | markdown(inline=true) | safe }}
 </article>
 {%- endmacro -%}
 
@@ -40,11 +31,6 @@
         <li role="separator" aria-hidden="true">::</li>
         <li title="Author">{{ config.author }}</li>
         {%- endif %}
-        <li role="separator" aria-hidden="true">::</li>
-
-        {%- set reading_time = page.reading_time ~ " min" | replace(from="0 min", to="<1 min") -%}
-        {%- set word_count = [page.word_count ~ " word", page.word_count | pluralize] | join %}
-        <li title="{{ word_count }}"><time datetime="PT{{ page.reading_time }}M">{{ reading_time }}</time> read</li>
     </ul>
 
     {%- if page.taxonomies %}
@@ -67,7 +53,6 @@
 </header>
 {%- endmacro -%}
 
-{# change date format to dd/mm/YY -#}
 {%- macro date(value) -%}
 <time datetime="{{ value }}">{{ value | date(format="%d/%m/%Y") }}</time>
 {%- endmacro -%}

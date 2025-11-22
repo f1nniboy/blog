@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, domain, ... }:
 let
   toTOML = (pkgs.formats.toml { }).generate;
 in
@@ -16,8 +16,7 @@ toTOML "config.toml" {
   feed_filenames = [ "rss.xml" ];
 
   # other
-  # TODO: use as attr from package
-  base_url = "https://f1nn.space";
+  base_url = "https://${domain}";
 
   taxonomies = [
     {
@@ -25,6 +24,11 @@ toTOML "config.toml" {
       feed = true;
     }
   ];
+
+  markdown = {
+    highlight_code = true;
+    render_emoji = true;
+  };
 
   # theme
   theme = "custom";
@@ -40,11 +44,15 @@ toTOML "config.toml" {
         url = "posts";
         trailing_slash = true;
       }
-      {
-        name = "tags";
-        url = "tags";
+
+      # TODO: uncomment
+      /*
+        {
+        name = "notes";
+        url = "notes";
         trailing_slash = true;
-      }
+        }
+      */
     ];
     socials = [
       {
@@ -59,7 +67,6 @@ toTOML "config.toml" {
     close_responsive_menu_on_resize = false;
     copy_button = false;
     show_default_author = false;
-    bottom_footnotes = true;
     header_title = "f1nn's blog";
     favicon_emoji = "📟";
     copyright = "theme by [ebkalderon](https://github.com/ebkalderon)";

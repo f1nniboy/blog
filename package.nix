@@ -1,7 +1,7 @@
-{ inputs, pkgs, ... }:
+{ pkgs, domain, ... }:
 let
   configFile = import ./config.nix {
-    inherit pkgs;
+    inherit pkgs domain;
   };
 in
 pkgs.stdenv.mkDerivation {
@@ -16,7 +16,7 @@ pkgs.stdenv.mkDerivation {
 
   configurePhase = ''
     mkdir -p themes sass
-    cp -r "${inputs.theme}" themes/custom
+    cp -r "${./theme}" themes/custom
   '';
 
   buildPhase = ''
