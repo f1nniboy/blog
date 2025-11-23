@@ -16,7 +16,7 @@ toTOML "config.toml" {
   feed_filenames = [ "rss.xml" ];
 
   # other
-  base_url = "https://${domain}";
+  base_url = domain;
 
   taxonomies = [
     {
@@ -27,7 +27,10 @@ toTOML "config.toml" {
 
   markdown = {
     highlight_code = true;
+    highlight_theme = "monokai";
     render_emoji = true;
+    smart_punctuation = true;
+    bottom_footnotes = true;
   };
 
   # theme
@@ -45,14 +48,11 @@ toTOML "config.toml" {
         trailing_slash = true;
       }
 
-      # TODO: uncomment
-      /*
-        {
-        name = "notes";
-        url = "notes";
+      {
+        name = "bits";
+        url = "bits";
         trailing_slash = true;
-        }
-      */
+      }
     ];
     socials = [
       {
@@ -64,6 +64,19 @@ toTOML "config.toml" {
         url = "https://github.com/f1nniboy";
       }
     ];
+
+    responsive_images = {
+      widths = [
+        200
+        400
+        600
+        800
+        1000
+        1200
+      ];
+      # must exist in the above list
+      fallback_width = 1200;
+    };
     close_responsive_menu_on_resize = false;
     copy_button = false;
     show_default_author = false;

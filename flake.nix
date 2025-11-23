@@ -11,7 +11,7 @@
       systems,
       nixpkgs,
       ...
-    }:
+    }@inputs:
     let
       eachSystem = nixpkgs.lib.genAttrs (import systems);
     in
@@ -24,13 +24,9 @@
           };
         in
         {
-          default =
-            {
-              domain ? "/",
-            }:
-            import ./package.nix {
-              inherit pkgs domain;
-            };
+          default = import ./package.nix {
+            inherit inputs pkgs;
+          };
         }
       );
     };

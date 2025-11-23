@@ -1,9 +1,9 @@
 {%- macro excerpt(page) -%}
-<article class="post">
-    {{ post_macros::header(page=page, heading="h2", is_excerpt=true) | indent | safe }}
+{%- set permalink = page.permalink -%}
+{%- set is_short = not page.description and not page.summary -%}
 
-    {%- set permalink = page.permalink -%}
-    {%- set is_note = not page.description and not page.summary -%}
+<article class="post">
+    {{ post_macros::header(page=page, is_excerpt=true) | indent | safe }}
 
     {%- if page.description %}
     <p>{{ page.description | markdown(inline=true) | safe }}</p>
@@ -13,14 +13,16 @@
     {%- else %}
     {{ page.content | safe }}
     {%- endif %}
-
-    {%- if not is_note -%}
-    <a class="read-more" href="{{ permalink | safe }}" aria-label="Read more about {{ page.title }}">read more →</a>
-    {%- endif -%}
 </article>
 {%- endmacro -%}
 
-{%- macro header(page, heading, is_excerpt=false) -%}
+{%- macro header(page, is_excerpt=false) -%}
+{%- if is_excerpt -%}
+    {%- set heading = "h2" -%}
+{%- else -%}
+    {%- set heading = "h1" -%}
+{%- endif -%}
+
 <header>
     <{{ heading }} class="post-title">
         <a href="{{ page.permalink | safe }}">{{ page.title }}</a>
@@ -32,39 +34,20 @@
 
         <li title="Published on {{ page.date }}{%- if page.updated %}, last updated {{ page.updated }}{%- endif -%}">
             {{- post_macros::date(value=page.date) }}
-            {%- if page.updated %}&nbsp;[Updated: {{ post_macros::date(value=page.updated) }}]{%- endif -%}
+            {%- if page.updated %}&nbsp;[updated at {{ post_macros::date(value=page.updated) }}]{%- endif -%}
         </li>
 
-        {%- if page.authors %}
-        <li role="separator" aria-hidden="true">::</li>
-        <li title="Authors">
-            {%- for author in page.authors -%}
-            {{ author }}{%- if not loop.last -%}, {% endif -%}
-            {%- endfor -%}
-        </li>
-        {%- elif config.author and config.extra.show_default_author %}
-        <li role="separator" aria-hidden="true">::</li>
-        <li title="Author">{{ config.author }}</li>
-        {%- endif %}
-    </ul>
-
-    {%- if page.taxonomies %}
-    <div class="post-tags">
-        {%- for category in page.taxonomies.categories | default(value=[]) %}
-        {% set category_url = get_taxonomy_url(kind="categories", name=category, lang=page.lang) -%}
-        <span>&lbrace;<a {% if not is_excerpt -%}rel="tag" {% endif -%} href="{{ category_url | safe }}">{{ category }}</a>&rbrace;</span>
-        {%- endfor %}
-
-        {%- if page.taxonomies.categories and page.taxonomies.tags %}
-        <span role="separator">::</span>
-        {%- endif %}
+        {%- if page.taxonomies %}
+        <li aria-hidden="true" role="separator">::</li>
 
         {%- for tag in page.taxonomies.tags | default(value=[]) %}
         {% set tag_url = get_taxonomy_url(kind="tags", name=tag, lang=page.lang) -%}
+        <li class="post-tag">
             <span>#<a {% if not is_excerpt -%}rel="tag" {% endif -%} href="{{ tag_url | safe }}">{{ tag }}</a></span>
+        </li>
         {%- endfor %}
-    </div>
-    {%- endif %}
+        {%- endif %}
+    </ul>
 </header>
 {%- endmacro -%}
 

@@ -1,4 +1,9 @@
-{ pkgs, domain, ... }:
+{
+  pkgs,
+  domain ? "https://f1nn.space",
+  #domain ? "/",
+  ...
+}:
 let
   configFile = import ./config.nix {
     inherit pkgs domain;

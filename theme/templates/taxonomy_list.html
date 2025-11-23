@@ -1,11 +1,11 @@
 {% extends "base.html" %}
 
 {%- block title -%}
-{{ taxonomy.name | title }} | {{ config.title }}
+{{ taxonomy.name }} | {{ config.title }}
 {%- endblock -%}
 
 {%- block main -%}
-        <h1>{{ taxonomy.name | title }}</h1>
+        <h1>{{ taxonomy.name }}</h1>
 
         {%- set num_terms = terms | length %}
         <ul class="taxonomy-list{%- if num_terms > 16 %} three-column{%- elif num_terms > 8 %} two-column{%- endif -%}">

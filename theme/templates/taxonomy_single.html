@@ -2,7 +2,7 @@
 {% import "page.html" as macros %}
 
 {%- block title -%}
-{{ term.name | title }} | {{ config.title }}
+#{{ term.name }} | {{ config.title }}
 {%- endblock -%}
 
 {%- block feeds -%}
@@ -23,7 +23,7 @@
 
 {%- block main -%}
 {%- filter indent -%}{%- filter indent -%}
-<h1>Posts for: {{ term.name }}</h1>
+<h1>posts tagged <a>#{{ term.name }}</a></h1>
 {%- for page in paginator.pages | default(value=term.pages) %}
 {{ post_macros::excerpt(page=page) }}
 {%- endfor %}

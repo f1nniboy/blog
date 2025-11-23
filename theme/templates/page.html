@@ -15,7 +15,7 @@
 {%- block main -%}
 {%- filter indent -%}{%- filter indent -%}
 <article class="post content">
-    {{ post_macros::header(page=page, heading="h1") | indent | safe }}
+    {{ post_macros::header(page=page) | indent | safe }}
 {%- endfilter %}{%- endfilter %}
 
 {{ page.content | safe }}
@@ -25,7 +25,7 @@
 {%- if page.lower or page.higher %}
 <nav class="post-navigation">
     <header class="post-navigation-title">
-        <h2>Read More Posts</h2>
+        <h2>read more posts</h2>
         <hr>
     </header>
     <div class="post-navigation-buttons">

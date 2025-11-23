@@ -1,24 +1,48 @@
 {%- set source_image_path = page.colocated_path ~ src -%}
 {%- set alt_text = alt -%}
 {%- set caption = caption | default(value="") -%}
-{%- set lazy_load = lazy | default(value=true) -%}
+{%- set lazy_load = lazy | default(value=false) -%}
 
 {#- Generates responsive images from a given high-resolution source image -#}
 
 {%- set metadata = get_image_metadata(path=source_image_path) -%}
 {%- set source_width = metadata.width -%}
 
+{%- set format = "webp" -%}
+{%- set quality = 80 -%}
+
 {%- set image_candidates = [] -%}
 {%- for width in config.extra.responsive_images.widths -%}
     {%- if source_width >= width -%}
-        {%- set resized_image = resize_image(path=source_image_path, width=width, op="fit_width", quality=80) -%}
+        {%- set resized_image = resize_image(
+            path=source_image_path,
+            width=width,
+            op="fit_width",
+            quality=quality,
+            format=format
+        ) -%}
         {%- set candidate = resized_image.url ~ " " ~ width ~ "w" -%}
         {%- set_global image_candidates = image_candidates | concat(with=candidate) -%}
+
+        {# Save some processing power by reusing an image generated in this step as fallback #}
+        {%- if width == config.extra.responsive_images.fallback_width -%}
+        {%- set_global fallback_image = resized_image -%}
+        {%- endif -%}
     {%- endif -%}
 {%- endfor -%}
 
+{# If no fitting fallback image was set above, create one #}
+{%- if not fallback_image -%}
 {%- set fallback_width = config.extra.responsive_images.fallback_width -%}
-{%- set fallback_image = resize_image(path=source_image_path, width=fallback_width, height=fallback_width, op="fit") -%}
+{%- set fallback_image = resize_image(
+    path=source_image_path,
+    width=fallback_width,
+    height=fallback_width,
+    op="fit",
+    quality=quality,
+    format=format
+) -%}
+{%- endif -%}
 
 {%- if caption -%}
 <figure>
