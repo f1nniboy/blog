@@ -8,4 +8,4 @@ insert_anchor_links = "right"
 framed = true
 +++
 
-Here you can find a collection of things I've learned over time.
+Here you can find a collection of random things I've learned or discovered.
