@@ -21,12 +21,12 @@ table inet mullvad_tailscale {
 }
 ```
 
-This works fine on my desktop and laptop, but how can you use Tailscale and Mullvad simultaneously on mobile? Android only supports one connected VPN at a time, and I don't feel like tinkering with firewall settings there (*if that's even possible?*). It would also be nice to get rid of the standalone Mullvad app on desktop and just connect to the relays directly, without the `nftables` hack.
+This works fine on my desktop and laptop, but how can you use Tailscale and Mullvad simultaneously on mobile? Android only supports one connected VPN at a time. It would also be nice to get rid of the standalone Mullvad app on desktop and just connect to the relays directly, without the `nftables` hack.
 
 # Doing Some Research
 While scouting the Headscale repo, I stumbled across issue **[#1545](https://github.com/juanfont/headscale/issues/1545)** requesting support for "Wireguard-only peers," exactly what Tailscale added to support Mullvad exit nodes.
 
-At first the issue seemed pretty stale — opened in September 2023 and still open — but coincidentally a **[PR](https://github.com/juanfont/headscale/pull/2892)** was just recently opened to implement this feature. The creator said they've been using this feature for a while now & it sounded prettty feature-complete, so I decided to give it a try.
+At first the issue seemed pretty stale — created in September 2023 and still open — but coincidentally a **[PR](https://github.com/juanfont/headscale/pull/2892)** was just recently opened to implement this feature. The developer said they've been using this feature for a while now & it sounded pretty feature-complete, so I decided to give it a try.
 
 If you're on NixOS, making use of this pull request is as easy as ...
 ```nix
